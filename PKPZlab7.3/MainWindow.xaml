@@ -5,8 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PKPZlab7._3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ISP Billing System" Height="600" Width="950"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <Label Content="Add New Session" FontWeight="Bold"/>
+
+            <Label Content="User Login:" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtLogin"/>
+
+            <Label Content="Session Date (ddMMyyyy):" Margin="0,5,0,0"/>
+            <DatePicker x:Name="dpSessionDate"/>
+
+            <Label Content="Start Time (HH:mm:ss):" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtStartTime" Text="10:00:00"/>
+
+            <Label Content="End Time (HH:mm:ss):" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtEndTime" Text="11:30:00"/>
+
+            <Label Content="Data Received (KB):" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtDataReceived" PreviewTextInput="NumberValidationTextBox"/>
+
+            <Label Content="Data Sent (KB):" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtDataSent" PreviewTextInput="NumberValidationTextBox"/>
+
+            <Button x:Name="btnAddSession" Content="Add Session" Margin="0,15,0,0" 
+                    Click="btnAddSession_Click"/>
+        </StackPanel>
+
+        <DockPanel Grid.Column="1" Margin="10,0,10,0">
+            <Label DockPanel.Dock="Top" Content="All Sessions (with Duration &amp; Traffic)" FontWeight="Bold"/>
+            <ListBox x:Name="lstAllSessions"/>
+        </DockPanel>
+
+        <TabControl Grid.Column="2">
+            <TabItem Header="Date Range Search">
+                <StackPanel Margin="5">
+                    <Label Content="Find sessions &gt; 20MB" FontWeight="SemiBold"/>
+                    <Label Content="Start Date:"/>
+                    <DatePicker x:Name="dpSearchStart"/>
+                    <Label Content="End Date:"/>
+                    <DatePicker x:Name="dpSearchEnd"/>
+                    <Button x:Name="btnSearchRange" Content="Search" Margin="0,10,0,0" 
+                            Click="btnSearchRange_Click"/>
+                    <ListBox x:Name="lstSearchRangeResults" Height="250" Margin="0,10,0,0"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Statistics">
+                <StackPanel Margin="5">
+                    <Label Content="Last Year Count" FontWeight="SemiBold"/>
+                    <Label Content="Enter Month (1-12):"/>
+                    <ComboBox x:Name="cmbMonth" SelectedIndex="0">
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">1</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">2</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">3</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">4</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">5</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">6</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">7</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">8</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">9</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">10</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">11</System:Int32>
+                        <System:Int32 xmlns:System="clr-namespace:System;assembly=mscorlib">12</System:Int32>
+                    </ComboBox>
+                    <Button x:Name="btnCalcLastYear" Content="Calculate" Margin="0,10,0,0" 
+                            Click="btnCalcLastYear_Click"/>
+                    <TextBlock x:Name="tbLastYearResult" Margin="0,10,0,0" FontWeight="Bold"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Find by Date">
+                <StackPanel Margin="5">
+                    <Label Content="Find by Date" FontWeight="SemiBold"/>
+                    <Label Content="Select Date:"/>
+                    <DatePicker x:Name="dpFindDate"/>
+
+                    <Button x:Name="btnFindMaxDuration" Content="Find Max Duration" 
+                            Margin="0,10,0,0" Click="btnFindMaxDuration_Click"/>
+                    <TextBlock x:Name="tbMaxDurationResult" Margin="0,5,0,0" FontWeight="Bold"/>
+
+                    <Button x:Name="btnFindAllByDate" Content="Find All Sessions" 
+                            Margin="0,15,0,0" Click="btnFindAllByDate_Click"/>
+                    <ListBox x:Name="lstFindAllByDateResults" Height="200" Margin="0,10,0,0"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

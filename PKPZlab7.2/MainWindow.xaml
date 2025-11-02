@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PKPZlab7._2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Task2" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <Label Content="Add new flight" FontWeight="Bold"/>
+
+            <Label Content="Destination:" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtCity"/>
+
+            <Label Content="Flight number:" Margin="0,5,0,0"/>
+            <TextBox x:Name="txtFlightNumber" PreviewTextInput="txtFlightNumber_PreviewTextInput"/>
+
+            <Label Content="Type of aircraft" Margin="0,5,0,0"/>
+            <ComboBox x:Name="cmbPlaneType"/>
+
+            <Button x:Name="btnAddFlight" Content="Add flight" Margin="0,15,0,0" 
+                    Click="btnAddFlight_Click"/>
+
+            <Separator Margin="0,20,0,10"/>
+
+            <Label Content="Search" FontWeight="Bold"/>
+            <Label Content="Type city destination"/>
+            <TextBox x:Name="txtSearchCity"/>
+
+            <Button x:Name="btnSortAndSearch" Content="Sort and search" Margin="0,15,0,0" 
+                    Click="btnSortAndSearch_Click"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,5">
+                <Label DockPanel.Dock="Top" Content="Flights" FontWeight="Bold"/>
+                <ListBox x:Name="lstFlights"/>
+            </DockPanel>
+
+            <DockPanel Grid.Row="1" Margin="0,5,0,0">
+                <Label DockPanel.Dock="Top" Content="Search results" FontWeight="Bold"/>
+                <ListBox x:Name="lstResults"/>
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>
